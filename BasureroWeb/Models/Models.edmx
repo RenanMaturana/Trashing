@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="basureroModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreArea" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="basurero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" />
+          <Property Name="capacidad" Type="varchar" MaxLength="45" />
+          <Property Name="fechaEntrada" Type="varchar" MaxLength="45" />
+          <Property Name="area" Type="varchar" MaxLength="45" />
+          <Property Name="fk_estadoBasurero" Type="int" Nullable="false" />
+          <Property Name="fk_area" Type="int" Nullable="false" />
+          <Property Name="fk_ubicacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cargousuario">
+          <Key>
+            <PropertyRef Name="idCargoUsuario" />
+          </Key>
+          <Property Name="idCargoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreCargoUsuario" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="ciudad">
+          <Key>
+            <PropertyRef Name="idCiudad" />
+          </Key>
+          <Property Name="idCiudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCiudad" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="detalleusuariobasurero">
+          <Key>
+            <PropertyRef Name="idDetalleUsuarioBasurero" />
+          </Key>
+          <Property Name="idDetalleUsuarioBasurero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_usuario" Type="int" Nullable="false" />
+          <Property Name="fk_basurero" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estadobasurero">
+          <Key>
+            <PropertyRef Name="idEstadoBasurero" />
+          </Key>
+          <Property Name="idEstadoBasurero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="estadousuario">
+          <Key>
+            <PropertyRef Name="idEstado_usuario" />
+          </Key>
+          <Property Name="idEstado_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreEstado" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="ubicacion">
+          <Key>
+            <PropertyRef Name="idUbicacion" />
+          </Key>
+          <Property Name="idUbicacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="longitudUbicacion" Type="varchar" MaxLength="45" />
+          <Property Name="latitudUbicacion" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut" Type="varchar" MaxLength="45" />
+          <Property Name="password" Type="varchar" MaxLength="45" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" />
+          <Property Name="apellidoPaterno" Type="varchar" MaxLength="45" />
+          <Property Name="apellidoMaterno" Type="varchar" MaxLength="45" />
+          <Property Name="identificador" Type="varchar" MaxLength="45" />
+          <Property Name="telefono" Type="varchar" MaxLength="45" />
+          <Property Name="direccion" Type="varchar" MaxLength="45" />
+          <Property Name="fk_estadoUsuario" Type="int" Nullable="false" />
+          <Property Name="fk_cargo" Type="int" Nullable="false" />
+          <Property Name="fk_ciudad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="basureroModelStoreContainer">
+          <EntitySet Name="area" EntityType="Self.area" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="basurero" EntityType="Self.basurero" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="cargousuario" EntityType="Self.cargousuario" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="ciudad" EntityType="Self.ciudad" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="detalleusuariobasurero" EntityType="Self.detalleusuariobasurero" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="estadobasurero" EntityType="Self.estadobasurero" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="estadousuario" EntityType="Self.estadousuario" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="ubicacion" EntityType="Self.ubicacion" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="basurero" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="basureroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreArea" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="basurero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="capacidad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fechaEntrada" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fk_estadoBasurero" Type="Int32" Nullable="false" />
+          <Property Name="fk_area" Type="Int32" Nullable="false" />
+          <Property Name="fk_ubicacion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cargousuario">
+          <Key>
+            <PropertyRef Name="idCargoUsuario" />
+          </Key>
+          <Property Name="idCargoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreCargoUsuario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ciudad">
+          <Key>
+            <PropertyRef Name="idCiudad" />
+          </Key>
+          <Property Name="idCiudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCiudad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="detalleusuariobasurero">
+          <Key>
+            <PropertyRef Name="idDetalleUsuarioBasurero" />
+          </Key>
+          <Property Name="idDetalleUsuarioBasurero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_usuario" Type="Int32" Nullable="false" />
+          <Property Name="fk_basurero" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estadobasurero">
+          <Key>
+            <PropertyRef Name="idEstadoBasurero" />
+          </Key>
+          <Property Name="idEstadoBasurero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="estadousuario">
+          <Key>
+            <PropertyRef Name="idEstado_usuario" />
+          </Key>
+          <Property Name="idEstado_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreEstado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ubicacion">
+          <Key>
+            <PropertyRef Name="idUbicacion" />
+          </Key>
+          <Property Name="idUbicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="longitudUbicacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="latitudUbicacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoMaterno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="identificador" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fk_estadoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="fk_cargo" Type="Int32" Nullable="false" />
+          <Property Name="fk_ciudad" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="basureroEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="area" EntityType="Self.area" />
+          <EntitySet Name="basurero" EntityType="Self.basurero" />
+          <EntitySet Name="cargousuario" EntityType="Self.cargousuario" />
+          <EntitySet Name="ciudad" EntityType="Self.ciudad" />
+          <EntitySet Name="detalleusuariobasurero" EntityType="Self.detalleusuariobasurero" />
+          <EntitySet Name="estadobasurero" EntityType="Self.estadobasurero" />
+          <EntitySet Name="estadousuario" EntityType="Self.estadousuario" />
+          <EntitySet Name="ubicacion" EntityType="Self.ubicacion" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="basureroModelStoreContainer" CdmEntityContainer="basureroEntities">
+          <EntitySetMapping Name="area">
+            <EntityTypeMapping TypeName="basureroModel.area">
+              <MappingFragment StoreEntitySet="area">
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="nombreArea" ColumnName="nombreArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="basurero">
+            <EntityTypeMapping TypeName="basureroModel.basurero">
+              <MappingFragment StoreEntitySet="basurero">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="fk_estadoBasurero" ColumnName="fk_estadoBasurero" />
+                <ScalarProperty Name="fk_area" ColumnName="fk_area" />
+                <ScalarProperty Name="fk_ubicacion" ColumnName="fk_ubicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cargousuario">
+            <EntityTypeMapping TypeName="basureroModel.cargousuario">
+              <MappingFragment StoreEntitySet="cargousuario">
+                <ScalarProperty Name="idCargoUsuario" ColumnName="idCargoUsuario" />
+                <ScalarProperty Name="nombreCargoUsuario" ColumnName="nombreCargoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ciudad">
+            <EntityTypeMapping TypeName="basureroModel.ciudad">
+              <MappingFragment StoreEntitySet="ciudad">
+                <ScalarProperty Name="idCiudad" ColumnName="idCiudad" />
+                <ScalarProperty Name="NombreCiudad" ColumnName="NombreCiudad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalleusuariobasurero">
+            <EntityTypeMapping TypeName="basureroModel.detalleusuariobasurero">
+              <MappingFragment StoreEntitySet="detalleusuariobasurero">
+                <ScalarProperty Name="idDetalleUsuarioBasurero" ColumnName="idDetalleUsuarioBasurero" />
+                <ScalarProperty Name="fk_usuario" ColumnName="fk_usuario" />
+                <ScalarProperty Name="fk_basurero" ColumnName="fk_basurero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estadobasurero">
+            <EntityTypeMapping TypeName="basureroModel.estadobasurero">
+              <MappingFragment StoreEntitySet="estadobasurero">
+                <ScalarProperty Name="idEstadoBasurero" ColumnName="idEstadoBasurero" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estadousuario">
+            <EntityTypeMapping TypeName="basureroModel.estadousuario">
+              <MappingFragment StoreEntitySet="estadousuario">
+                <ScalarProperty Name="idEstado_usuario" ColumnName="idEstado_usuario" />
+                <ScalarProperty Name="nombreEstado" ColumnName="nombreEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ubicacion">
+            <EntityTypeMapping TypeName="basureroModel.ubicacion">
+              <MappingFragment StoreEntitySet="ubicacion">
+                <ScalarProperty Name="idUbicacion" ColumnName="idUbicacion" />
+                <ScalarProperty Name="longitudUbicacion" ColumnName="longitudUbicacion" />
+                <ScalarProperty Name="latitudUbicacion" ColumnName="latitudUbicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="basureroModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="rut" ColumnName="rut" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="fk_estadoUsuario" ColumnName="fk_estadoUsuario" />
+                <ScalarProperty Name="fk_cargo" ColumnName="fk_cargo" />
+                <ScalarProperty Name="fk_ciudad" ColumnName="fk_ciudad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
