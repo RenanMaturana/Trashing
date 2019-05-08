@@ -30,7 +30,7 @@ namespace BasureroWeb.Vistas
         {
             basureroEntities db = new basureroEntities();
             var query = from us in db.usuario
-                        join est in db.estadousuario on us.fk_estadoUsuario equals est.idEstado_usuario
+                        join est in db.estado on us.fk_estadoUsuario equals est.idEstado
                         join car in db.cargousuario on us.fk_cargo equals car.idCargoUsuario
                         join ciu in db.ciudad on us.fk_ciudad equals ciu.idCiudad
                         select new { us.rut,us.nombre,Apellido=us.apellidoPaterno,Usuario=us.identificador,Estado=est.nombreEstado,Cargo=car.nombreCargoUsuario,Ciudad=ciu.NombreCiudad};

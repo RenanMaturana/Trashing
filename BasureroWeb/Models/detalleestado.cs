@@ -12,9 +12,14 @@ namespace BasureroWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class estadousuario
+    public partial class detalleestado
     {
-        public int idEstado_usuario { get; set; }
-        public string nombreEstado { get; set; }
+        public int iddetalleEstado { get; set; }
+        public Nullable<System.DateTime> fechaDetalleEstado { get; set; }
+        public string estadoDetalleEstado { get; set; }
+        public string capacidadDetalleEstado { get; set; }
+        public string areaDetalleEstado { get; set; }
+        public int fk_idBasurero { get; set; }
+        public int fk_estadoBasurero { get; set; }
     }
 }

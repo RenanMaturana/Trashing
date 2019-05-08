@@ -12,11 +12,15 @@ namespace BasureroWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ubicacion
+    public partial class detalleubicacion
     {
-        public int idUbicacion { get; set; }
-        public string longitudUbicacion { get; set; }
-        public string latitudUbicacion { get; set; }
-        public string direccionUbicacion { get; set; }
+        public int iddetalleUbicacion { get; set; }
+        public string detalleLongitudUbicacion { get; set; }
+        public string detalleLatitudUbicacion { get; set; }
+        public string detalleDireccionUbicacion { get; set; }
+        public Nullable<System.DateTime> detalleFecha { get; set; }
+        public string detalleCapacidad { get; set; }
+        public int fk_ubicacion { get; set; }
+        public int fk_basurero { get; set; }
     }
 }

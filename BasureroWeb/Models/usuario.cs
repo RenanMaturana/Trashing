@@ -20,9 +20,9 @@ namespace BasureroWeb.Models
         public string nombre { get; set; }
         public string apellidoPaterno { get; set; }
         public string apellidoMaterno { get; set; }
-        public string identificador { get; set; }
         public string telefono { get; set; }
         public string direccion { get; set; }
+        public string identificador { get; set; }
         public int fk_estadoUsuario { get; set; }
         public int fk_cargo { get; set; }
         public int fk_ciudad { get; set; }

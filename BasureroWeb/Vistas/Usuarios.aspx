@@ -124,8 +124,8 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="select_estado">Estado</label>
-                        <asp:DropDownList ID="select_estado" runat="server" CssClass="form-control" DataSourceID="ef_estado" DataTextField="nombreEstado" DataValueField="idEstado_usuario"></asp:DropDownList>
-                        <asp:EntityDataSource runat="server" ID="ef_estado" DefaultContainerName="basureroEntities" ConnectionString="name=basureroEntities" EnableFlattening="False" EntitySetName="estadousuario" EntityTypeFilter="estadousuario"></asp:EntityDataSource>
+                        <asp:DropDownList ID="select_estado" CssClass="form-control" runat="server" DataSourceID="ef_est" DataTextField="nombreEstado" DataValueField="idEstado"></asp:DropDownList>
+                        <asp:EntityDataSource runat="server" ID="ef_est" DefaultContainerName="basureroEntities" ConnectionString="name=basureroEntities" EnableFlattening="False" EntitySetName="estado" EntityTypeFilter="estado"></asp:EntityDataSource>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="select_cargo">Cargo</label>

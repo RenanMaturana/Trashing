@@ -112,13 +112,13 @@ namespace BasureroWeb.Vistas {
         protected global::System.Web.UI.WebControls.DropDownList select_estado;
         
         /// <summary>
-        /// Control ef_estado.
+        /// Control ef_est.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource ef_estado;
+        protected global::System.Web.UI.WebControls.EntityDataSource ef_est;
         
         /// <summary>
         /// Control select_cargo.

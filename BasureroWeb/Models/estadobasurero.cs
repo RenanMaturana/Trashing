@@ -15,6 +15,6 @@ namespace BasureroWeb.Models
     public partial class estadobasurero
     {
         public int idEstadoBasurero { get; set; }
-        public string estado { get; set; }
+        public string estadoNombre { get; set; }
     }
 }

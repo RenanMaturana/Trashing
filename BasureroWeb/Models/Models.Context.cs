@@ -29,9 +29,11 @@ namespace BasureroWeb.Models
         public virtual DbSet<basurero> basurero { get; set; }
         public virtual DbSet<cargousuario> cargousuario { get; set; }
         public virtual DbSet<ciudad> ciudad { get; set; }
+        public virtual DbSet<detalleestado> detalleestado { get; set; }
+        public virtual DbSet<detalleubicacion> detalleubicacion { get; set; }
         public virtual DbSet<detalleusuariobasurero> detalleusuariobasurero { get; set; }
+        public virtual DbSet<estado> estado { get; set; }
         public virtual DbSet<estadobasurero> estadobasurero { get; set; }
-        public virtual DbSet<estadousuario> estadousuario { get; set; }
         public virtual DbSet<ubicacion> ubicacion { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
     }

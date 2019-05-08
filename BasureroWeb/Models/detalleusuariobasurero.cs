@@ -15,7 +15,13 @@ namespace BasureroWeb.Models
     public partial class detalleusuariobasurero
     {
         public int idDetalleUsuarioBasurero { get; set; }
-        public int fk_usuario { get; set; }
+        public string nombreUsuarioBasurero { get; set; }
+        public string capacidadUsuarioBasurero { get; set; }
+        public string fechaEntradaUsuarioBasurero { get; set; }
+        public string fechaSalidaUsuarioBasurero { get; set; }
+        public string areaUsuarioBasurero { get; set; }
+        public string ubicacionUsuarioBasurero { get; set; }
         public int fk_basurero { get; set; }
+        public int fk_usuario { get; set; }
     }
 }

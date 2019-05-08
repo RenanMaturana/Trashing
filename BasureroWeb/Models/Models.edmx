@@ -17,13 +17,14 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="45" />
+          <Property Name="nombreBasurero" Type="varchar" MaxLength="45" />
           <Property Name="capacidad" Type="varchar" MaxLength="45" />
-          <Property Name="fechaEntrada" Type="varchar" MaxLength="45" />
+          <Property Name="fechaEntrada" Type="datetime" Precision="0" />
           <Property Name="area" Type="varchar" MaxLength="45" />
-          <Property Name="fk_estadoBasurero" Type="int" Nullable="false" />
+          <Property Name="carga" Type="varchar" MaxLength="45" />
+          <Property Name="FechaSalida" Type="datetime" Precision="0" />
           <Property Name="fk_area" Type="int" Nullable="false" />
-          <Property Name="fk_ubicacion" Type="int" Nullable="false" />
+          <Property Name="fk_estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="cargousuario">
           <Key>
@@ -39,27 +40,58 @@
           <Property Name="idCiudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreCiudad" Type="varchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="detalleestado">
+          <Key>
+            <PropertyRef Name="iddetalleEstado" />
+          </Key>
+          <Property Name="iddetalleEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaDetalleEstado" Type="datetime" Precision="0" />
+          <Property Name="estadoDetalleEstado" Type="varchar" MaxLength="45" />
+          <Property Name="capacidadDetalleEstado" Type="varchar" MaxLength="45" />
+          <Property Name="areaDetalleEstado" Type="varchar" MaxLength="45" />
+          <Property Name="fk_idBasurero" Type="int" Nullable="false" />
+          <Property Name="fk_estadoBasurero" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalleubicacion">
+          <Key>
+            <PropertyRef Name="iddetalleUbicacion" />
+          </Key>
+          <Property Name="iddetalleUbicacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="detalleLongitudUbicacion" Type="varchar" MaxLength="45" />
+          <Property Name="detalleLatitudUbicacion" Type="varchar" MaxLength="45" />
+          <Property Name="detalleDireccionUbicacion" Type="varchar" MaxLength="45" />
+          <Property Name="detalleFecha" Type="datetime" Precision="0" />
+          <Property Name="detalleCapacidad" Type="varchar" MaxLength="45" />
+          <Property Name="fk_ubicacion" Type="int" Nullable="false" />
+          <Property Name="fk_basurero" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="detalleusuariobasurero">
           <Key>
             <PropertyRef Name="idDetalleUsuarioBasurero" />
           </Key>
           <Property Name="idDetalleUsuarioBasurero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fk_usuario" Type="int" Nullable="false" />
+          <Property Name="nombreUsuarioBasurero" Type="varchar" MaxLength="45" />
+          <Property Name="capacidadUsuarioBasurero" Type="varchar" MaxLength="45" />
+          <Property Name="fechaEntradaUsuarioBasurero" Type="varchar" MaxLength="45" />
+          <Property Name="fechaSalidaUsuarioBasurero" Type="varchar" MaxLength="45" />
+          <Property Name="areaUsuarioBasurero" Type="varchar" MaxLength="45" />
+          <Property Name="ubicacionUsuarioBasurero" Type="varchar" MaxLength="45" />
           <Property Name="fk_basurero" Type="int" Nullable="false" />
+          <Property Name="fk_usuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreEstado" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="estadobasurero">
           <Key>
             <PropertyRef Name="idEstadoBasurero" />
           </Key>
           <Property Name="idEstadoBasurero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="estado" Type="varchar" MaxLength="45" />
-        </EntityType>
-        <EntityType Name="estadousuario">
-          <Key>
-            <PropertyRef Name="idEstado_usuario" />
-          </Key>
-          <Property Name="idEstado_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombreEstado" Type="varchar" MaxLength="45" />
+          <Property Name="estadoNombre" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="ubicacion">
           <Key>
@@ -68,6 +100,7 @@
           <Property Name="idUbicacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="longitudUbicacion" Type="varchar" MaxLength="45" />
           <Property Name="latitudUbicacion" Type="varchar" MaxLength="45" />
+          <Property Name="direccionUbicacion" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -79,9 +112,9 @@
           <Property Name="nombre" Type="varchar" MaxLength="45" />
           <Property Name="apellidoPaterno" Type="varchar" MaxLength="45" />
           <Property Name="apellidoMaterno" Type="varchar" MaxLength="45" />
-          <Property Name="identificador" Type="varchar" MaxLength="45" />
           <Property Name="telefono" Type="varchar" MaxLength="45" />
           <Property Name="direccion" Type="varchar" MaxLength="45" />
+          <Property Name="identificador" Type="varchar" MaxLength="45" />
           <Property Name="fk_estadoUsuario" Type="int" Nullable="false" />
           <Property Name="fk_cargo" Type="int" Nullable="false" />
           <Property Name="fk_ciudad" Type="int" Nullable="false" />
@@ -91,9 +124,11 @@
           <EntitySet Name="basurero" EntityType="Self.basurero" Schema="basurero" store:Type="Tables" />
           <EntitySet Name="cargousuario" EntityType="Self.cargousuario" Schema="basurero" store:Type="Tables" />
           <EntitySet Name="ciudad" EntityType="Self.ciudad" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="detalleestado" EntityType="Self.detalleestado" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="detalleubicacion" EntityType="Self.detalleubicacion" Schema="basurero" store:Type="Tables" />
           <EntitySet Name="detalleusuariobasurero" EntityType="Self.detalleusuariobasurero" Schema="basurero" store:Type="Tables" />
+          <EntitySet Name="estado" EntityType="Self.estado" Schema="basurero" store:Type="Tables" />
           <EntitySet Name="estadobasurero" EntityType="Self.estadobasurero" Schema="basurero" store:Type="Tables" />
-          <EntitySet Name="estadousuario" EntityType="Self.estadousuario" Schema="basurero" store:Type="Tables" />
           <EntitySet Name="ubicacion" EntityType="Self.ubicacion" Schema="basurero" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="basurero" store:Type="Tables" />
         </EntityContainer>
@@ -114,13 +149,14 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nombreBasurero" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="capacidad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="fechaEntrada" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fechaEntrada" Type="DateTime" />
           <Property Name="area" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="fk_estadoBasurero" Type="Int32" Nullable="false" />
+          <Property Name="carga" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="FechaSalida" Type="DateTime" />
           <Property Name="fk_area" Type="Int32" Nullable="false" />
-          <Property Name="fk_ubicacion" Type="Int32" Nullable="false" />
+          <Property Name="fk_estado" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="cargousuario">
           <Key>
@@ -136,27 +172,58 @@
           <Property Name="idCiudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreCiudad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="detalleestado">
+          <Key>
+            <PropertyRef Name="iddetalleEstado" />
+          </Key>
+          <Property Name="iddetalleEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaDetalleEstado" Type="DateTime" />
+          <Property Name="estadoDetalleEstado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="capacidadDetalleEstado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="areaDetalleEstado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fk_idBasurero" Type="Int32" Nullable="false" />
+          <Property Name="fk_estadoBasurero" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalleubicacion">
+          <Key>
+            <PropertyRef Name="iddetalleUbicacion" />
+          </Key>
+          <Property Name="iddetalleUbicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="detalleLongitudUbicacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="detalleLatitudUbicacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="detalleDireccionUbicacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="detalleFecha" Type="DateTime" />
+          <Property Name="detalleCapacidad" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fk_ubicacion" Type="Int32" Nullable="false" />
+          <Property Name="fk_basurero" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="detalleusuariobasurero">
           <Key>
             <PropertyRef Name="idDetalleUsuarioBasurero" />
           </Key>
           <Property Name="idDetalleUsuarioBasurero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fk_usuario" Type="Int32" Nullable="false" />
+          <Property Name="nombreUsuarioBasurero" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="capacidadUsuarioBasurero" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fechaEntradaUsuarioBasurero" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fechaSalidaUsuarioBasurero" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="areaUsuarioBasurero" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ubicacionUsuarioBasurero" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="fk_basurero" Type="Int32" Nullable="false" />
+          <Property Name="fk_usuario" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreEstado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="estadobasurero">
           <Key>
             <PropertyRef Name="idEstadoBasurero" />
           </Key>
           <Property Name="idEstadoBasurero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="estado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="estadousuario">
-          <Key>
-            <PropertyRef Name="idEstado_usuario" />
-          </Key>
-          <Property Name="idEstado_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombreEstado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="estadoNombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ubicacion">
           <Key>
@@ -165,6 +232,7 @@
           <Property Name="idUbicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="longitudUbicacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="latitudUbicacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="direccionUbicacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -176,9 +244,9 @@
           <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="apellidoPaterno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="apellidoMaterno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="identificador" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="direccion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="identificador" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="fk_estadoUsuario" Type="Int32" Nullable="false" />
           <Property Name="fk_cargo" Type="Int32" Nullable="false" />
           <Property Name="fk_ciudad" Type="Int32" Nullable="false" />
@@ -188,9 +256,11 @@
           <EntitySet Name="basurero" EntityType="Self.basurero" />
           <EntitySet Name="cargousuario" EntityType="Self.cargousuario" />
           <EntitySet Name="ciudad" EntityType="Self.ciudad" />
+          <EntitySet Name="detalleestado" EntityType="Self.detalleestado" />
+          <EntitySet Name="detalleubicacion" EntityType="Self.detalleubicacion" />
           <EntitySet Name="detalleusuariobasurero" EntityType="Self.detalleusuariobasurero" />
+          <EntitySet Name="estado" EntityType="Self.estado" />
           <EntitySet Name="estadobasurero" EntityType="Self.estadobasurero" />
-          <EntitySet Name="estadousuario" EntityType="Self.estadousuario" />
           <EntitySet Name="ubicacion" EntityType="Self.ubicacion" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
         </EntityContainer>
@@ -212,13 +282,14 @@
             <EntityTypeMapping TypeName="basureroModel.basurero">
               <MappingFragment StoreEntitySet="basurero">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombreBasurero" ColumnName="nombreBasurero" />
                 <ScalarProperty Name="capacidad" ColumnName="capacidad" />
                 <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
                 <ScalarProperty Name="area" ColumnName="area" />
-                <ScalarProperty Name="fk_estadoBasurero" ColumnName="fk_estadoBasurero" />
+                <ScalarProperty Name="carga" ColumnName="carga" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
                 <ScalarProperty Name="fk_area" ColumnName="fk_area" />
-                <ScalarProperty Name="fk_ubicacion" ColumnName="fk_ubicacion" />
+                <ScalarProperty Name="fk_estado" ColumnName="fk_estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -238,12 +309,53 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="detalleestado">
+            <EntityTypeMapping TypeName="basureroModel.detalleestado">
+              <MappingFragment StoreEntitySet="detalleestado">
+                <ScalarProperty Name="iddetalleEstado" ColumnName="iddetalleEstado" />
+                <ScalarProperty Name="fechaDetalleEstado" ColumnName="fechaDetalleEstado" />
+                <ScalarProperty Name="estadoDetalleEstado" ColumnName="estadoDetalleEstado" />
+                <ScalarProperty Name="capacidadDetalleEstado" ColumnName="capacidadDetalleEstado" />
+                <ScalarProperty Name="areaDetalleEstado" ColumnName="areaDetalleEstado" />
+                <ScalarProperty Name="fk_idBasurero" ColumnName="fk_idBasurero" />
+                <ScalarProperty Name="fk_estadoBasurero" ColumnName="fk_estadoBasurero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalleubicacion">
+            <EntityTypeMapping TypeName="basureroModel.detalleubicacion">
+              <MappingFragment StoreEntitySet="detalleubicacion">
+                <ScalarProperty Name="iddetalleUbicacion" ColumnName="iddetalleUbicacion" />
+                <ScalarProperty Name="detalleLongitudUbicacion" ColumnName="detalleLongitudUbicacion" />
+                <ScalarProperty Name="detalleLatitudUbicacion" ColumnName="detalleLatitudUbicacion" />
+                <ScalarProperty Name="detalleDireccionUbicacion" ColumnName="detalleDireccionUbicacion" />
+                <ScalarProperty Name="detalleFecha" ColumnName="detalleFecha" />
+                <ScalarProperty Name="detalleCapacidad" ColumnName="detalleCapacidad" />
+                <ScalarProperty Name="fk_ubicacion" ColumnName="fk_ubicacion" />
+                <ScalarProperty Name="fk_basurero" ColumnName="fk_basurero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="detalleusuariobasurero">
             <EntityTypeMapping TypeName="basureroModel.detalleusuariobasurero">
               <MappingFragment StoreEntitySet="detalleusuariobasurero">
                 <ScalarProperty Name="idDetalleUsuarioBasurero" ColumnName="idDetalleUsuarioBasurero" />
-                <ScalarProperty Name="fk_usuario" ColumnName="fk_usuario" />
+                <ScalarProperty Name="nombreUsuarioBasurero" ColumnName="nombreUsuarioBasurero" />
+                <ScalarProperty Name="capacidadUsuarioBasurero" ColumnName="capacidadUsuarioBasurero" />
+                <ScalarProperty Name="fechaEntradaUsuarioBasurero" ColumnName="fechaEntradaUsuarioBasurero" />
+                <ScalarProperty Name="fechaSalidaUsuarioBasurero" ColumnName="fechaSalidaUsuarioBasurero" />
+                <ScalarProperty Name="areaUsuarioBasurero" ColumnName="areaUsuarioBasurero" />
+                <ScalarProperty Name="ubicacionUsuarioBasurero" ColumnName="ubicacionUsuarioBasurero" />
                 <ScalarProperty Name="fk_basurero" ColumnName="fk_basurero" />
+                <ScalarProperty Name="fk_usuario" ColumnName="fk_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado">
+            <EntityTypeMapping TypeName="basureroModel.estado">
+              <MappingFragment StoreEntitySet="estado">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="nombreEstado" ColumnName="nombreEstado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -251,15 +363,7 @@
             <EntityTypeMapping TypeName="basureroModel.estadobasurero">
               <MappingFragment StoreEntitySet="estadobasurero">
                 <ScalarProperty Name="idEstadoBasurero" ColumnName="idEstadoBasurero" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="estadousuario">
-            <EntityTypeMapping TypeName="basureroModel.estadousuario">
-              <MappingFragment StoreEntitySet="estadousuario">
-                <ScalarProperty Name="idEstado_usuario" ColumnName="idEstado_usuario" />
-                <ScalarProperty Name="nombreEstado" ColumnName="nombreEstado" />
+                <ScalarProperty Name="estadoNombre" ColumnName="estadoNombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -269,6 +373,7 @@
                 <ScalarProperty Name="idUbicacion" ColumnName="idUbicacion" />
                 <ScalarProperty Name="longitudUbicacion" ColumnName="longitudUbicacion" />
                 <ScalarProperty Name="latitudUbicacion" ColumnName="latitudUbicacion" />
+                <ScalarProperty Name="direccionUbicacion" ColumnName="direccionUbicacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -281,9 +386,9 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
                 <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
-                <ScalarProperty Name="identificador" ColumnName="identificador" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="identificador" ColumnName="identificador" />
                 <ScalarProperty Name="fk_estadoUsuario" ColumnName="fk_estadoUsuario" />
                 <ScalarProperty Name="fk_cargo" ColumnName="fk_cargo" />
                 <ScalarProperty Name="fk_ciudad" ColumnName="fk_ciudad" />
