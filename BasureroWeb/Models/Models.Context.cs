@@ -25,9 +25,9 @@ namespace BasureroWeb.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<area> area { get; set; }
         public virtual DbSet<basurero> basurero { get; set; }
-        public virtual DbSet<cargousuario> cargousuario { get; set; }
+        public virtual DbSet<bodega> bodega { get; set; }
+        public virtual DbSet<cargo> cargo { get; set; }
         public virtual DbSet<ciudad> ciudad { get; set; }
         public virtual DbSet<detalleestado> detalleestado { get; set; }
         public virtual DbSet<detalleubicacion> detalleubicacion { get; set; }

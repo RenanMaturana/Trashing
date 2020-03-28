@@ -8,14 +8,14 @@
     <link href="Estilos/EstiloLogin.css" rel="stylesheet" type="text/css">
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 </head>
+
 <div class="login-block">
     <div class="container">
         <div class="row">
             <div class="col-md-4 login-sec">
                 <h2 class="text-center">Login</h2>
-                <form class="login-form" method="post" runat="server">
+                <form class="login-form" method="post" runat="server" autocomplete="off">
                     <div class="form-group">
                         <label for="usuario_id" class="text">Usuario</label>
                         <asp:textbox id="txt_id" cssclass="form-control" runat="server"></asp:textbox>
@@ -27,15 +27,24 @@
                     </div>
 
                     <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input">
-                            <small>Recordar</small>
-                        </label>
                         <br />
                         <br />
                         <asp:button id="btn_entrarA" cssclass="form-control btn btn-login float-right btn-danger" onclick="btn_entrar" runat="server" text="Entrar" />
                     </div>
-
+                    <div>
+                        <%--   FIN CENTRO--%>
+                        <%----ALERTA---%>
+                        <%---PANEL ES EQUIVALENTE A UN DIV DE HTML--%>
+                        <asp:panel runat="server" id="alerta" visible="false">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="text-center">
+                                    <asp:Label runat="server" ID="mensaje"></asp:Label>
+                                </div>
+                            </asp:panel>
+                        <%--FIN ALERTA --%>
+                    </div>
                     <asp:label runat="server" id="txt_LABEL_ERROR_LOGIN"></asp:label>
                 </form>
             </div>

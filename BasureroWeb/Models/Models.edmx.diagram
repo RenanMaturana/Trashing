@@ -4,18 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="211da47ca454450f889145ef0db477e5" Name="Diagram1">
-        <EntityTypeShape EntityType="basureroModel.area" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.basurero" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.cargousuario" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.ciudad" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.detalleestado" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.detalleubicacion" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.detalleusuariobasurero" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.estado" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.estadobasurero" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.ubicacion" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="basureroModel.usuario" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="f344d5835c2f4a599ea65b6db5be2c41" Name="Diagram1">
+        <EntityTypeShape EntityType="basureroModel.basurero" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.bodega" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.cargo" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.ciudad" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.detalleestado" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.detalleubicacion" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.detalleusuariobasurero" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.estado" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.estadobasurero" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.ubicacion" Width="1.5" PointX="6" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="basureroModel.usuario" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="basureroModel.fk_basurero_Bodega1" ManuallyRouted="false" />
+        <AssociationConnector Association="basureroModel.fk_detalleEstado_basurero1" ManuallyRouted="false" />
+        <AssociationConnector Association="basureroModel.fk_detalleUbicacion_basurero1" ManuallyRouted="false" />
+        <AssociationConnector Association="basureroModel.fk_detalleUsuarioBasurero_basurero1" ManuallyRouted="false" />
+        <AssociationConnector Association="basureroModel.fk_usuario_cargo1" ManuallyRouted="false" />
+        <AssociationConnector Association="basureroModel.fk_usuario_ciudad1" ManuallyRouted="false" />
+        <AssociationConnector Association="basureroModel.fk_detalleEstado_estadoBasurero1" ManuallyRouted="false" />
+        <AssociationConnector Association="basureroModel.fk_detalleUbicacion_ubicacion1" ManuallyRouted="false" />
+        <AssociationConnector Association="basureroModel.fk_detalleUsuarioBasurero_usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="basureroModel.fk_usuario_estado" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

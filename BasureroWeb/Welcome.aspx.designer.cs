@@ -40,6 +40,24 @@ namespace BasureroWeb {
         protected global::System.Web.UI.WebControls.Button btn_entrarA;
         
         /// <summary>
+        /// Control alerta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel alerta;
+        
+        /// <summary>
+        /// Control mensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label mensaje;
+        
+        /// <summary>
         /// Control txt_LABEL_ERROR_LOGIN.
         /// </summary>
         /// <remarks>

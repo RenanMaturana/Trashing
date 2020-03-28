@@ -14,7 +14,16 @@ namespace BasureroWeb.Models
     
     public partial class estadobasurero
     {
-        public int idEstadoBasurero { get; set; }
-        public string estadoNombre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public estadobasurero()
+        {
+            this.detalleestado = new HashSet<detalleestado>();
+        }
+    
+        public int idestadoBasurero { get; set; }
+        public string nombreEstadoBasurero { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalleestado> detalleestado { get; set; }
     }
 }

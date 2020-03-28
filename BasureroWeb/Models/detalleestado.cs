@@ -15,11 +15,16 @@ namespace BasureroWeb.Models
     public partial class detalleestado
     {
         public int iddetalleEstado { get; set; }
-        public Nullable<System.DateTime> fechaDetalleEstado { get; set; }
-        public string estadoDetalleEstado { get; set; }
-        public string capacidadDetalleEstado { get; set; }
-        public string areaDetalleEstado { get; set; }
-        public int fk_idBasurero { get; set; }
+        public System.DateTime fechaDE { get; set; }
+        public string nombreDE { get; set; }
+        public Nullable<int> capacidadDE { get; set; }
+        public Nullable<int> cargaDE { get; set; }
+        public string areaDE { get; set; }
+        public string direccionDE { get; set; }
+        public int fk_tablabasurero { get; set; }
         public int fk_estadoBasurero { get; set; }
+    
+        public virtual basurero basurero { get; set; }
+        public virtual estadobasurero estadobasurero { get; set; }
     }
 }

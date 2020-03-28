@@ -14,14 +14,17 @@ namespace BasureroWeb.Models
     
     public partial class detalleusuariobasurero
     {
-        public int idDetalleUsuarioBasurero { get; set; }
-        public string nombreUsuarioBasurero { get; set; }
-        public string capacidadUsuarioBasurero { get; set; }
-        public string fechaEntradaUsuarioBasurero { get; set; }
-        public string fechaSalidaUsuarioBasurero { get; set; }
-        public string areaUsuarioBasurero { get; set; }
-        public string ubicacionUsuarioBasurero { get; set; }
-        public int fk_basurero { get; set; }
+        public int iddetalleUsuarioBasurero { get; set; }
+        public string nombreDUB { get; set; }
+        public Nullable<int> capacidadDUB { get; set; }
+        public Nullable<System.DateTime> fechaEntradaDUB { get; set; }
+        public Nullable<System.DateTime> fechaSalidaDUB { get; set; }
+        public string areaDUB { get; set; }
+        public string direccionDUB { get; set; }
         public int fk_usuario { get; set; }
+        public int fk_basurero { get; set; }
+    
+        public virtual basurero basurero { get; set; }
+        public virtual usuario usuario { get; set; }
     }
 }

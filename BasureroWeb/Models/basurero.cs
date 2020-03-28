@@ -14,14 +14,28 @@ namespace BasureroWeb.Models
     
     public partial class basurero
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public basurero()
+        {
+            this.detalleestado = new HashSet<detalleestado>();
+            this.detalleubicacion = new HashSet<detalleubicacion>();
+            this.detalleusuariobasurero = new HashSet<detalleusuariobasurero>();
+        }
+    
+        public int idbasurero { get; set; }
         public string nombreBasurero { get; set; }
-        public string capacidad { get; set; }
-        public Nullable<System.DateTime> fechaEntrada { get; set; }
-        public string area { get; set; }
-        public string carga { get; set; }
-        public Nullable<System.DateTime> FechaSalida { get; set; }
-        public int fk_area { get; set; }
-        public int fk_estado { get; set; }
+        public Nullable<int> capacidad { get; set; }
+        public Nullable<int> carga { get; set; }
+        public Nullable<System.DateTime> fechaEntradaBasurero { get; set; }
+        public Nullable<System.DateTime> fechaSalidaBasurero { get; set; }
+        public int fk_bodega { get; set; }
+    
+        public virtual bodega bodega { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalleestado> detalleestado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalleubicacion> detalleubicacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalleusuariobasurero> detalleusuariobasurero { get; set; }
     }
 }

@@ -14,9 +14,18 @@ namespace BasureroWeb.Models
     
     public partial class ubicacion
     {
-        public int idUbicacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ubicacion()
+        {
+            this.detalleubicacion = new HashSet<detalleubicacion>();
+        }
+    
+        public int idubicacion { get; set; }
+        public string direccionUbicacion { get; set; }
         public string longitudUbicacion { get; set; }
         public string latitudUbicacion { get; set; }
-        public string direccionUbicacion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalleubicacion> detalleubicacion { get; set; }
     }
 }

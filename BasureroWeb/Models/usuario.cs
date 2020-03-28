@@ -14,17 +14,30 @@ namespace BasureroWeb.Models
     
     public partial class usuario
     {
-        public int idUsuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public usuario()
+        {
+            this.detalleusuariobasurero = new HashSet<detalleusuariobasurero>();
+        }
+    
+        public int idusuario { get; set; }
         public string rut { get; set; }
+        public string usuario1 { get; set; }
         public string password { get; set; }
         public string nombre { get; set; }
         public string apellidoPaterno { get; set; }
         public string apellidoMaterno { get; set; }
         public string telefono { get; set; }
         public string direccion { get; set; }
-        public string identificador { get; set; }
-        public int fk_estadoUsuario { get; set; }
+        public System.DateTime fechaCreacionUsuario { get; set; }
+        public int fk_estado { get; set; }
         public int fk_cargo { get; set; }
         public int fk_ciudad { get; set; }
+    
+        public virtual cargo cargo { get; set; }
+        public virtual ciudad ciudad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalleusuariobasurero> detalleusuariobasurero { get; set; }
+        public virtual estado estado { get; set; }
     }
 }

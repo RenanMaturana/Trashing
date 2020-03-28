@@ -14,7 +14,16 @@ namespace BasureroWeb.Models
     
     public partial class ciudad
     {
-        public int idCiudad { get; set; }
-        public string NombreCiudad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ciudad()
+        {
+            this.usuario = new HashSet<usuario>();
+        }
+    
+        public int idciudad { get; set; }
+        public string nombreCiudad { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<usuario> usuario { get; set; }
     }
 }
