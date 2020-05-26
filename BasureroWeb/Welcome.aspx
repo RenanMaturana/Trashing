@@ -2,12 +2,13 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="es">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="Estilos/EstiloLogin.css" rel="stylesheet" type="text/css">
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>BI - Login</title>
 </head>
 
 <div class="login-block">

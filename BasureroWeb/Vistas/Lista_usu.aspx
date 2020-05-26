@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="es">
 <head runat="server">
 
     <meta charset="utf-8">
