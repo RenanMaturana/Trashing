@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BasureroWeb.Models;
-using BasureroWeb.Querys;
+
 
 namespace BasureroWeb.Vistas.OPERADOR
 {
@@ -16,7 +15,7 @@ namespace BasureroWeb.Vistas.OPERADOR
         protected void Page_Load(object sender,EventArgs e)
         {
             Response.AddHeader("Refresh",Convert.ToString((Session.Timeout * 60) + 5));
-            if(IsPostBack != true) {
+            if(!IsPostBack) {
                 if(Session["user"] != null) {
                     txtBienvenidoAdmin.Text = Session["user"].ToString();
                     txtCargo.Text = Session["userCargo"].ToString();
@@ -24,7 +23,7 @@ namespace BasureroWeb.Vistas.OPERADOR
                     RescatarMensajeAlerta();
                 } else {
                     Thread.Sleep(5000);
-                    //Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
+                    Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
                     Response.Redirect("~/Welcome.aspx");
                 }
             }
@@ -162,8 +161,8 @@ namespace BasureroWeb.Vistas.OPERADOR
                     txt_nameBodega.Text = list_bod.Rows[fila].Cells[1].Text;
 
                 }
-            } catch(Exception) {
-
+            } catch(Exception ex) {
+                Console.WriteLine("{0} Excepcion encontrada...= ", ex);
             }
         }
 
@@ -172,9 +171,8 @@ namespace BasureroWeb.Vistas.OPERADOR
             try {
                 list_bod.PageIndex = e.NewPageIndex;
                 list_bod.DataBind();
-            } catch(Exception) {
-
-
+            } catch(Exception ex) {
+                Console.WriteLine("{0} Excepcion encontrada...= ", ex);
             }
         }
     }

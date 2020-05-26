@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -15,7 +14,7 @@ namespace BasureroWeb.Vistas
         protected void Page_Load(object sender,EventArgs e)
         {
             Response.AddHeader("Refresh",Convert.ToString((Session.Timeout * 60) + 5));
-            if(IsPostBack != true) {
+            if(!IsPostBack) {
                 if(Session["user"] != null) {
                     txtBienvenidoAdmin.Text = Session["user"].ToString();
                     txtCargo.Text = Session["userCargo"].ToString();
@@ -23,7 +22,7 @@ namespace BasureroWeb.Vistas
                     RescatarMensajeAlerta();
                 } else {
                     Thread.Sleep(5000);
-                    //Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
+                    Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
                     Response.Redirect("~/Welcome.aspx");
                 }
             }
@@ -60,8 +59,6 @@ namespace BasureroWeb.Vistas
         {
             Session.RemoveAll();
             Session.Abandon();
-            //ScriptManager.RegisterStartupScript(Page,Page.GetType(),"logoutModal","$('#logoutModal').modal();",true);
-            // UpdatePanel1.Update();
             Response.Redirect("~/Welcome.aspx");
         }
         private void loadgrid()
@@ -82,9 +79,8 @@ namespace BasureroWeb.Vistas
             try {
                 list_Basureros.PageIndex = e.NewPageIndex;
                 list_Basureros.DataBind();
-            } catch(Exception) {
-
-
+            } catch(Exception ex) {
+                Console.WriteLine("{0} Excepcion encontrada...= ", ex);
             }
         }
 

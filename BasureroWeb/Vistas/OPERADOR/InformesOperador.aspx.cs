@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.IO;
 using BasureroWeb.Models;
 using System.Threading;
 
@@ -18,7 +16,7 @@ namespace BasureroWeb.Vistas.OPERADOR
         protected void Page_Load(object sender,EventArgs e)
         {
             Response.AddHeader("Refresh",Convert.ToString((Session.Timeout * 60) + 5));
-            if(IsPostBack != true) {
+            if(!IsPostBack) {
                 if(Session["user"] != null) {
                     txtBienvenidoAdmin.Text = Session["user"].ToString();
                     txtCargo.Text = Session["userCargo"].ToString();
@@ -26,7 +24,7 @@ namespace BasureroWeb.Vistas.OPERADOR
                     RescatarMensajeAlerta();
                 } else {
                     Thread.Sleep(5000);
-                    //Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
+                    Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
                     Response.Redirect("~/Welcome.aspx");
 
                 }
@@ -64,8 +62,6 @@ namespace BasureroWeb.Vistas.OPERADOR
         {
             Session.RemoveAll();
             Session.Abandon();
-            //ScriptManager.RegisterStartupScript(Page,Page.GetType(),"logoutModal","$('#logoutModal').modal();",true);
-            // UpdatePanel1.Update();
             Response.Redirect("~/Welcome.aspx");
         }
 
@@ -87,7 +83,6 @@ namespace BasureroWeb.Vistas.OPERADOR
 
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(50,50,50,50);
-            //PdfWriter writer = PdfWriter.GetInstance(doc,new FileStream("C:\\Users/Matias/Desktop/PDF/PDF_Basurero.pdf",FileMode.Create));
             PdfWriter writer = PdfWriter.GetInstance(doc,System.Web.HttpContext.Current.Response.OutputStream);
             doc.Open();
             //*******************  
@@ -111,7 +106,7 @@ namespace BasureroWeb.Vistas.OPERADOR
             p3f.Font.Size = 12;
             doc.Add(p3f);
             doc.Add(new Paragraph("\n",LineBreak));
-            // doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
+            doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
             doc.Add(new Paragraph(" "));
             PdfPTable table = new PdfPTable(6);
             table.AddCell("Idenficador");
@@ -155,7 +150,6 @@ namespace BasureroWeb.Vistas.OPERADOR
 
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(50,50,50,50);
-            //PdfWriter writer = PdfWriter.GetInstance(doc,new FileStream("C:\\Users/Matias/Desktop/PDF/PDF_DetalleBasurero.pdf",FileMode.Create));
             PdfWriter writer = PdfWriter.GetInstance(doc,System.Web.HttpContext.Current.Response.OutputStream);          
             doc.Open();
             //*******************  
@@ -179,7 +173,7 @@ namespace BasureroWeb.Vistas.OPERADOR
             p3f.Font.Size = 12;
             doc.Add(p3f);
             doc.Add(new Paragraph("\n",LineBreak));
-            // doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
+            doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
             doc.Add(new Paragraph(" "));
             PdfPTable table = new PdfPTable(6);
             table.AddCell("Fecha");

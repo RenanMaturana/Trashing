@@ -16,7 +16,7 @@
 
     <link href="../Content/css/animate.css" rel="stylesheet">
     <link href="../Content/css/style.css" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD69H5XWKJ_LBBBkstSM6fPVnIbGq8Kq6k"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCptYHkLR2sKIJvFWLtB9Tx-HsYVDmrb3U"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 
@@ -105,7 +105,7 @@
                                 <li><a href="Ubicacion.aspx"><i class="fa fa-location-arrow"></i><span class="nav-label">Agregar Ubicacion</span></a></li>
                                 <li><a href="Bodega.aspx"><i class="fa fa-archive"></i><span class="nav-label">Agregar Bodega</span></a></li>
                                 <li><a href="EstadoBasurero.aspx"><i class="fa fa-empire"></i><span class="nav-label">Agregar Estado</span></a></li>
-                                <li><a href="maps.aspx"><i class="fa fa-empire"></i><span class="nav-label">Agregar Estado</span></a></li>
+          
                             </ul>
                         </li>
                         <li class="special_link">
@@ -163,6 +163,9 @@
 
                 <div class="wrapper wrapper-content">
                     <%--   CENTRO--%>
+                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                    <asp:UpdatePanel ID="UpdatePanel777" runat="server">
+                        <ContentTemplate>   
                     <div class="container col-md-4">
                     </div>
                     <div class="container panel panel-success col-md-4" style="padding: 5px; background-color: white">
@@ -175,9 +178,10 @@
                                 <asp:TextBox ID="txt_nameUbicacion" CssClass="form-control hide" runat="server"></asp:TextBox>
                                 <asp:Image ID="imgpd" ImageUrl="~/img/loc.jpg" CssClass="img-responsive" Width="300px" Height="150px" runat="server" />
                                 <asp:TextBox ID="txtLat" CssClass="form-control hide" runat="server"></asp:TextBox>
-                                <button type="button" data-toggle="modal" data-target="#ModalMap" class="btn btn-success" style="width:300px">
+                                <asp:LinkButton runat="server" type="button" data-toggle="modal" data-target="#ModalMap" class="btn btn-success" style="width:300px">
                                     <span class="fa fa-location-arrow"></span><span id="ubicacion">Seleccionar Ubicación:</span>
-                                </button>
+                                </asp:LinkButton>
+                                                            
                             </div>
                             <div class="form-group col-md-12">
                                 <div class="modal fade" id="ModalMap" tabindex="-1" role="dialog">
@@ -193,7 +197,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">Ubicación:</label>
                                                         <div class="col-sm-9">
-                                                            <asp:TextBox runat="server" CssClass="form-control" ReadOnly="true" ID="ModalMapAddress" />
+                                                            <asp:TextBox runat="server" CssClass="form-control" ID="ModalMapAddress" />
                                                         </div>
                                                         <div class="col-sm-1">
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -213,7 +217,8 @@
                                                             <asp:TextBox runat="server" CssClass="form-control" ReadOnly="true" ID="ModalMapLon" />
                                                         </div>
                                                         <div class="col-sm-3">
-                                                            <asp:Button ID="btn_adjuntar" runat="server" CssClass="btn btn-primary btn-block" data-dismiss="modal" Text="Adjuntar" OnClick="btn_adjuntar_Click" />
+                                                             <asp:LinkButton ID="btn_adjuntar" runat="server" OnClick="btn_adjuntar_Click" CssClass="btn btn-danger">Adjuntar</asp:LinkButton>
+                                                            
                                                         </div>
 
                                                     </div>
@@ -258,8 +263,10 @@
                 </div>
             </div>
         </div>
+                                </ContentTemplate>
+                    </asp:UpdatePanel>
         <!-- Logout Modal-->
-        <asp:ScriptManager ID="sm" runat="server"></asp:ScriptManager>
+
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -324,7 +331,7 @@
     </form>
     <div>
 
-        <script>   
+        <script type="text/javascript">   
             $(document).ready(function () {
                 $('#ModalMapPreview').locationpicker({
                     radius: 100,
@@ -332,7 +339,7 @@
                         latitude: -35.4433673,
                         longitude: -71.6317319
                     },
-
+                    
                     inputBinding: {
                         latitudeInput: $('#<%=ModalMapLat.ClientID%>'),
                         longitudeInput: $('#<%=ModalMapLon.ClientID%>'),

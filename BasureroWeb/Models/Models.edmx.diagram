@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f344d5835c2f4a599ea65b6db5be2c41" Name="Diagram1">
+      <Diagram DiagramId="ed300d32cffc49dd8ccbde9f0b7a0d03" Name="Diagram1">
         <EntityTypeShape EntityType="basureroModel.basurero" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="basureroModel.bodega" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="basureroModel.cargo" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
