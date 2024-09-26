@@ -6,8 +6,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BasureroWeb.Models;
-using BasureroWeb.Querys;
-using Newtonsoft.Json;
 
 namespace BasureroWeb.Vistas
 {
@@ -17,9 +15,9 @@ namespace BasureroWeb.Vistas
         basureroEntities db = new basureroEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack != true)
+            if (!IsPostBack)
             {
-                if (Session["user"] != null)
+                if (Session["user"] != null && Session["userCargo"].Equals("Administrador"))
                 {
                     txtBienvenidoAdmin.Text = Session["user"].ToString();
                     txtCargo.Text = Session["userCargo"].ToString();
@@ -28,7 +26,7 @@ namespace BasureroWeb.Vistas
                 else
                 {
                     Thread.Sleep(5000);
-                    //Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
+                    Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
                     Response.Redirect("~/Welcome.aspx");
                 }
             }
@@ -104,7 +102,9 @@ namespace BasureroWeb.Vistas
                 }
 
             }
-            catch { }
+            catch (Exception ex){
+                Console.WriteLine("{0} Excepcion encontrada...= ", ex);
+            }
         }
 
 
@@ -129,31 +129,27 @@ namespace BasureroWeb.Vistas
                                   select p;
                     return result1.ToList<Object>();
                 default:
-                    var query = from p in db.usuario select p;
+       
                     return queryFiltro.ToList<Object>();
 
             }
 
         }
 
-        protected void list_grid_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
+  
 
 
         protected void list_grid_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
-            {
-                int op = Convert.ToInt32(idOpcion.SelectedItem.Value);
+            {             
                 list_grid.PageIndex = e.NewPageIndex;
-                //list_grid.DataSource = buscarTabla(tBuscar.Text,op);
                 list_grid.DataBind();
 
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine("{0} Excepcion encontrada...= ", ex);
             }
         }
 
@@ -200,8 +196,9 @@ namespace BasureroWeb.Vistas
                 UpdatePanel4.Update();
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("{0} Excepcion encontrada...= ", ex);
             }
         }
 

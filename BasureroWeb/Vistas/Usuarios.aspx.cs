@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BasureroWeb.Models;
 using System.Threading;
-using BasureroWeb.Querys;
 
 namespace BasureroWeb.Vistas
 {
@@ -16,15 +15,15 @@ namespace BasureroWeb.Vistas
         protected void Page_Load(object sender,EventArgs e)
         {            
             Response.AddHeader("Refresh",Convert.ToString((Session.Timeout * 60) + 5));
-            if(IsPostBack != true) {
-                if(Session["user"] != null) {
+            if(!IsPostBack) {
+                if(Session["user"] != null && Session["userCargo"].Equals("Administrador")) {
                     txtBienvenidoAdmin.Text = Session["user"].ToString();
                     txtCargo.Text = Session["userCargo"].ToString();
 
                     RescatarMensajeAlerta();
                 } else {
                     Thread.Sleep(5000);
-                    //Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
+                    Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
                     Response.Redirect("~/Welcome.aspx");
 
                 }
@@ -201,7 +200,8 @@ namespace BasureroWeb.Vistas
                 if(dv == (char)(s != 0 ? s + 47 : 75)) {
                     validacion = true;
                 }
-            } catch(Exception) {
+            } catch(Exception ex) {
+                Console.WriteLine("{0} Excepcion encontrada...= ", ex);
             }
             return validacion;
         }

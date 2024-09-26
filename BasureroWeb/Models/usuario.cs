@@ -29,7 +29,7 @@ namespace BasureroWeb.Models
         public string apellidoMaterno { get; set; }
         public string telefono { get; set; }
         public string direccion { get; set; }
-        public System.DateTime fechaCreacionUsuario { get; set; }
+        public Nullable<System.DateTime> fechaCreacionUsuario { get; set; }
         public int fk_estado { get; set; }
         public int fk_cargo { get; set; }
         public int fk_ciudad { get; set; }

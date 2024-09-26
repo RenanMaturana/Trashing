@@ -9,23 +9,22 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using BasureroWeb.Models;
 using MySql.Data.MySqlClient;
-using System.ComponentModel;
-using System.IO;
-using System.Timers;
+
 
 namespace BasureroWeb.Vistas {
     public partial class Administrador : System.Web.UI.Page {
         basureroEntities db = new basureroEntities();
         protected void Page_Load(object sender,EventArgs e) {
             Response.AddHeader("Refresh",Convert.ToString((Session.Timeout * 60) + 5));
-            if(IsPostBack != true) {
-                if(Session["user"] != null) {
+
+            if (!IsPostBack){
+                if (Session["user"] != null && Session["userCargo"].Equals("Administrador")){
                     txtBienvenidoAdmin.Text = Session["user"].ToString();
                     txtCargo.Text = Session["userCargo"].ToString();
                     RescatarMensajeAlerta();
-                } else {
+                } else{
                     Thread.Sleep(2000);
-                    //Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
+                    Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
                     Response.Redirect("~/Welcome.aspx");
 
                 }
@@ -63,8 +62,6 @@ namespace BasureroWeb.Vistas {
         protected void btn_deslog_Click(object sender,EventArgs e) {
             Session.RemoveAll();
             Session.Abandon();
-            //ScriptManager.RegisterStartupScript(Page,Page.GetType(),"logoutModal","$('#logoutModal').modal();",true);
-            // UpdatePanel1.Update();
             Response.Redirect("~/Welcome.aspx");
         }
 

@@ -7,12 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace BasureroWeb.Vistas
-{
+namespace BasureroWeb.Vistas {
 
 
-    public partial class Ubicacion
-    {
+    public partial class Ubicacion {
 
         /// <summary>
         /// Control form1.
@@ -58,6 +56,24 @@ namespace BasureroWeb.Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txt_message;
+
+        /// <summary>
+        /// Control ScriptManager1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
+        /// Control UpdatePanel777.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel777;
 
         /// <summary>
         /// Control txt_nameUbicacion.
@@ -120,7 +136,7 @@ namespace BasureroWeb.Vistas
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_adjuntar;
+        protected global::System.Web.UI.WebControls.LinkButton btn_adjuntar;
 
         /// <summary>
         /// Control alerta.
@@ -148,15 +164,6 @@ namespace BasureroWeb.Vistas
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.Timer Timer1;
-
-        /// <summary>
-        /// Control sm.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager sm;
 
         /// <summary>
         /// Control UpdatePanel1.

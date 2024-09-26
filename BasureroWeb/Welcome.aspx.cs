@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
-using System.Data;
-using BasureroWeb.Querys;
 
 
 namespace BasureroWeb
@@ -23,7 +18,10 @@ namespace BasureroWeb
         protected void btn_entrar(object sender,EventArgs e)
         {
             Models.basureroEntities db = new Models.basureroEntities();
-            if(validarRut(txt_id.Text)==true) {
+            if(validarRut(txt_id.Text)) {
+                var rolU = from us in db.usuario
+                           join car in db.cargo on us.fk_cargo equals car.idcargo
+                           select new {Cargo = car.nombreCargo };
                 var usuario = db.usuario.Where(x => x.rut == txt_id.Text && x.password == txt_pw.Text);
                 if(usuario.FirstOrDefault() != null) {
                     if(usuario.FirstOrDefault().fk_cargo == 1) {
@@ -43,15 +41,7 @@ namespace BasureroWeb
                         Session["userCel"] = usuario.FirstOrDefault().telefono;
                         Session["userEst"] = usuario.FirstOrDefault().estado.nombreEstado;
                         Response.Redirect("Vistas/Operador.aspx");
-                    } else {
-                        Session["user"] = usuario.FirstOrDefault().nombre + " " + usuario.FirstOrDefault().apellidoPaterno;
-                        Session["userCargo"] = usuario.FirstOrDefault().cargo.nombreCargo;
-                        Session["userDire"] = usuario.FirstOrDefault().direccion;
-                        Session["userCiu"] = usuario.FirstOrDefault().ciudad.nombreCiudad;
-                        Session["userCel"] = usuario.FirstOrDefault().telefono;
-                        Session["userEst"] = usuario.FirstOrDefault().estado.nombreEstado;
-                        Response.Redirect("Welcome_usuario.aspx");
-                    }
+                    } 
 
                 } else {
                     alerta.Visible = true;
@@ -91,7 +81,8 @@ namespace BasureroWeb
                 if(dv == (char)(s != 0 ? s + 47 : 75)) {
                     validacion = true;
                 }
-            } catch(Exception) {
+            } catch(Exception ex) {
+                Console.WriteLine("{0} Excepcion encontrada...= ", ex);
             }
             return validacion;
         }

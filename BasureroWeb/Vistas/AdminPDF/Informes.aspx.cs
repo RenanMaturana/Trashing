@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using System.IO;
 using BasureroWeb.Models;
 using System.Threading;
 
@@ -18,15 +16,15 @@ namespace BasureroWeb.Vistas.AdminPDF
         protected void Page_Load(object sender,EventArgs e)
         {
             Response.AddHeader("Refresh",Convert.ToString((Session.Timeout * 60) + 5));
-            if(IsPostBack != true) {
-                if(Session["user"] != null) {
+            if(!IsPostBack) {
+                if(Session["user"] != null && Session["userCargo"].Equals("Administrador")) {
                     txtBienvenidoAdmin.Text = Session["user"].ToString();
                     txtCargo.Text = Session["userCargo"].ToString();
 
                     RescatarMensajeAlerta();
                 } else {
                     Thread.Sleep(5000);
-                    //Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
+                    Response.Write("<script>alert('Su sesión ha expirado,\nserá redireccionado a la página de Log InSu session ha terminado');</script>");
                     Response.Redirect("~/Welcome.aspx");
 
                 }
@@ -62,8 +60,6 @@ namespace BasureroWeb.Vistas.AdminPDF
         {
             Session.RemoveAll();
             Session.Abandon();
-            //ScriptManager.RegisterStartupScript(Page,Page.GetType(),"logoutModal","$('#logoutModal').modal();",true);
-            // UpdatePanel1.Update();
             Response.Redirect("~/Welcome.aspx");
         }
 
@@ -86,12 +82,10 @@ namespace BasureroWeb.Vistas.AdminPDF
 
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(50,50,50,50);
-            //PdfWriter writer = PdfWriter.GetInstance(doc,new FileStream("C:\\Users/Matias/Desktop/PDF/PDF_Usuario.pdf",FileMode.Create));
             PdfWriter writer = PdfWriter.GetInstance(doc, System.Web.HttpContext.Current.Response.OutputStream);
             doc.Open(); 
             //*******************  
             Font LineBreak = FontFactory.GetFont("Arial",size: 16);
-            //string img = "C:/Users/Matias/Desktop/PHP/Web_Basurero/BasureroWeb/img/logos.PNG";
             String img = Server.MapPath("/img/logos.PNG");
             iTextSharp.text.Image im = iTextSharp.text.Image.GetInstance(img);
             Paragraph p2 = new Paragraph("Listado de usuarios");
@@ -111,7 +105,7 @@ namespace BasureroWeb.Vistas.AdminPDF
             p3f.Font.Size = 12;
             doc.Add(p3f);
             doc.Add(new Paragraph("\n",LineBreak));
-            // doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
+            doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
             doc.Add(new Paragraph(" "));
             PdfPTable table = new PdfPTable(7);
             table.AddCell("Rut");
@@ -158,7 +152,6 @@ namespace BasureroWeb.Vistas.AdminPDF
 
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(50,50,50,50);
-            //PdfWriter writer = PdfWriter.GetInstance(doc,new FileStream("C:\\Users/Matias/Desktop/PDF/PDF_Basurero.pdf",FileMode.Create));
             PdfWriter writer = PdfWriter.GetInstance(doc,System.Web.HttpContext.Current.Response.OutputStream);
             doc.Open();
             //*******************  
@@ -182,7 +175,7 @@ namespace BasureroWeb.Vistas.AdminPDF
             p3f.Font.Size = 12;
             doc.Add(p3f);
             doc.Add(new Paragraph("\n",LineBreak));
-            // doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
+            doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
             doc.Add(new Paragraph(" "));
             PdfPTable table = new PdfPTable(6);
             table.AddCell("Idenficador");
@@ -223,7 +216,6 @@ namespace BasureroWeb.Vistas.AdminPDF
 
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(50,50,50,50);
-            //PdfWriter writer = PdfWriter.GetInstance(doc,new FileStream("C:\\Users/Matias/Desktop/PDF/PDF_Ciudad.pdf",FileMode.Create));
             PdfWriter writer = PdfWriter.GetInstance(doc,System.Web.HttpContext.Current.Response.OutputStream);
             doc.Open();
             //*******************  
@@ -247,7 +239,7 @@ namespace BasureroWeb.Vistas.AdminPDF
             p3f.Font.Size = 12;
             doc.Add(p3f);
             doc.Add(new Paragraph("\n",LineBreak));
-            // doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
+            doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
             doc.Add(new Paragraph(" "));
             PdfPTable table = new PdfPTable(2);
             table.AddCell("ID");
@@ -282,7 +274,6 @@ namespace BasureroWeb.Vistas.AdminPDF
 
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(50,50,50,50);
-            //PdfWriter writer = PdfWriter.GetInstance(doc,new FileStream("C:\\Users/Matias/Desktop/PDF/PDF_DetalleBasurero.pdf",FileMode.Create));
             PdfWriter writer = PdfWriter.GetInstance(doc,System.Web.HttpContext.Current.Response.OutputStream);
             doc.Open();
             //*******************  
@@ -306,7 +297,7 @@ namespace BasureroWeb.Vistas.AdminPDF
             p3f.Font.Size = 12;
             doc.Add(p3f);
             doc.Add(new Paragraph("\n",LineBreak));
-            // doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
+            doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
             doc.Add(new Paragraph(" "));
             PdfPTable table = new PdfPTable(6);
             table.AddCell("Fecha");
@@ -348,7 +339,6 @@ namespace BasureroWeb.Vistas.AdminPDF
 
             Document doc = new Document(PageSize.A4);
             doc.SetMargins(50,50,50,50);
-            // PdfWriter writer = PdfWriter.GetInstance(doc,new FileStream("C:\\Users/Matias/Desktop/PDF/PDF_Bodega.pdf",FileMode.Create));
             PdfWriter writer = PdfWriter.GetInstance(doc,System.Web.HttpContext.Current.Response.OutputStream);
             doc.Open();
             //*******************  
@@ -372,7 +362,7 @@ namespace BasureroWeb.Vistas.AdminPDF
             p3f.Font.Size = 12;
             doc.Add(p3f);
             doc.Add(new Paragraph("\n",LineBreak));
-            // doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
+            doc.Add(new Paragraph("Creado por : " + Session["user"].ToString()));
             doc.Add(new Paragraph(" "));
             PdfPTable table = new PdfPTable(2);
             table.AddCell("ID");

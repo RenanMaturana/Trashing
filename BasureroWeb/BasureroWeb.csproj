@@ -2305,7 +2305,6 @@
     </Content>
     <Content Include="Vistas\Administrador.aspx" />
     <Content Include="Vistas\AdminPDF\Informes.aspx" />
-    <Content Include="Vistas\Auxiliar.aspx" />
     <Content Include="Vistas\Basureros.aspx" />
     <Content Include="Vistas\Bodega.aspx" />
     <Content Include="Vistas\Cargo.aspx" />
@@ -2632,8 +2631,6 @@
     <Compile Include="Models\usuario.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Querys\QueryBasurero.cs" />
-    <Compile Include="Querys\QueryUsuario.cs" />
     <Compile Include="Vistas\Administrador.aspx.cs">
       <DependentUpon>Administrador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2647,13 +2644,6 @@
     </Compile>
     <Compile Include="Vistas\AdminPDF\Informes.aspx.designer.cs">
       <DependentUpon>Informes.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Vistas\Auxiliar.aspx.cs">
-      <DependentUpon>Auxiliar.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Vistas\Auxiliar.aspx.designer.cs">
-      <DependentUpon>Auxiliar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Basureros.aspx.cs">
       <DependentUpon>Basureros.aspx</DependentUpon>
